@@ -25,24 +25,8 @@
             android:padding="4dp"
             android:typeface="sans" />
 
-
-              <EditText
-                  android:id="@+id/name"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_alignLeft="@+id/description"
-                  android:layout_alignParentTop="true"
-                  android:layout_marginTop="20dp"
-                  android:background="@drawable/edit_back"
-                  android:ellipsize="start"
-                  android:ems="10"
-                  android:gravity="center"
-                  android:hint="Event Name"
-                  android:padding="4dp"
-                  android:typeface="sans" ><requestFocus /></EditText>
-
               <Button
-                  android:id="@+id/button1"
+                  android:id="@+id/increase"
                   style="?android:attr/buttonStyleSmall"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -53,32 +37,108 @@
                   android:minHeight="30dp"
                   android:minWidth="35dp"
                   android:text="+"
-                  android:textSize="28dp" />
+                  android:textSize="28dp"
+                  android:onClick="increaseNum" />
 
               <Button
-                  android:id="@+id/button2"
+                  android:id="@+id/decrease"
                   style="?android:attr/buttonStyleSmall"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:layout_alignRight="@+id/button1"
-                  android:layout_below="@+id/button1"
+                  android:layout_alignRight="@+id/increase"
+                  android:layout_below="@+id/increase"
                   android:background="@drawable/login_button_custom"
                   android:minHeight="30dp"
                   android:minWidth="35dp"
                   android:text="-"
-                  android:textSize="28dp" />
+                  android:textSize="28dp"
+                  android:onClick="decreaseNum" />
 
               <EditText
                   android:id="@+id/editText1"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_alignParentLeft="true"
-                  android:layout_alignTop="@+id/button1"
+                  android:layout_alignTop="@+id/increase"
                   android:layout_marginTop="30dp"
-                  android:layout_toLeftOf="@+id/button1"
+                  android:layout_toLeftOf="@+id/increase"
                   android:ems="10"
+                  android:editable="false"
+            android:gravity="center"
                   android:hint="Number of people needed"
                   android:padding="5dp"
             android:background="@drawable/edit_back" />
+
+              <EditText
+                  android:id="@+id/editText2"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignLeft="@+id/editText1"
+                  android:layout_below="@+id/decrease"
+                  android:layout_marginTop="18dp"
+                  android:ems="10"
+                  
+            android:gravity="center"
+                  android:inputType="date"
+                  android:hint="Enter a date mm/dd/yyyy"
+                  android:padding="4dp"
+            android:background="@drawable/edit_back" />
+
+              <EditText
+                  android:id="@+id/editText3"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/editText2"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="21dp"
+                  android:ems="10"
+                  
+            android:gravity="center"
+                  android:inputType="time"
+                  android:padding="4dp"
+                  android:hint="Enter a time"
+            android:background="@drawable/edit_back" />
+
+              <EditText
+                  android:id="@+id/editText4"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/editText3"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="22dp"
+                  android:ems="10"
+                  android:hint="Location Description"
+                  android:gravity="center"
+                  android:inputType="time"
+                  android:padding="4dp"
+            android:background="@drawable/edit_back" />
+
+              <EditText
+                  android:id="@+id/name"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_alignLeft="@+id/description"
+                  android:layout_alignParentTop="true"
+                  android:background="@drawable/edit_back"
+                  android:ellipsize="start"
+                  android:ems="10"
+                  android:gravity="center"
+                  android:hint="Event Name"
+                  android:padding="4dp"
+                  android:typeface="sans" >
+
+                  <requestFocus />
+              </EditText>
+
+              <Button
+                  android:id="@+id/button1"
+                  android:background="@drawable/login_button_custom"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/editText4"
+                  android:layout_centerHorizontal="true"
+                  android:layout_marginTop="29dp"
+                  android:text="Create Event"
+                  android:onClick="createEvent" />
 
 </RelativeLayout>
