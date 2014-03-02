@@ -95,4 +95,24 @@
         android:layout_marginTop="24dp"
         android:background="#ffffff" />
 
+    <View
+        android:id="@+id/View01"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/editText5"
+        android:layout_marginTop="34dp"
+        android:background="#ffffff" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/login_button_custom"
+        android:text="Join Event"
+        android:typeface="sans" />
+
 </RelativeLayout>
