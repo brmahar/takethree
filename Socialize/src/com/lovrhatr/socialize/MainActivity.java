@@ -149,7 +149,8 @@ public class MainActivity extends Activity {
 					creator.setText("  Creator: " + arg0.get(i).getString("creator"));
 					date.setText("  Date: " + arg0.get(i).getString("date"));
 					time.setText("  Time: " + arg0.get(i).getString("time"));
-					going.setText(arg0.get(i).getInt("looking_for_people") + " people attending");
+					int size = arg0.get(0).getList("people_attending").size();
+					going.setText(String.valueOf(size) + " people attending");
 					going.setPadding(0, 0, 0, 10);
 					layout.addView(cardView);
 					

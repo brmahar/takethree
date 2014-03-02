@@ -28,21 +28,13 @@ public final class R {
         public static final int ic_launcher=0x7f020004;
         public static final int login_button_custom=0x7f020005;
         public static final int pressedbutton=0x7f020006;
-        public static final int search_bg_shadow=0x7f020007;
+        public static final int search_bg=0x7f020007;
+        public static final int search_bg_shadow=0x7f020008;
     }
     public static final class id {
         public static final int Button01=0x7f08000e;
         public static final int TextView01=0x7f080009;
         public static final int View01=0x7f08000c;
-<<<<<<< HEAD
-        public static final int action_logout=0x7f080021;
-        public static final int action_settings=0x7f08001f;
-        public static final int button1=0x7f08000d;
-        public static final int card_rel=0x7f080015;
-        public static final int checkBox1=0x7f080019;
-        public static final int checkBox2=0x7f080018;
-        public static final int checkBox3=0x7f08001a;
-=======
         public static final int action_logout=0x7f080028;
         public static final int action_settings=0x7f080026;
         public static final int button1=0x7f08000d;
@@ -50,7 +42,6 @@ public final class R {
         public static final int checkBox1=0x7f080020;
         public static final int checkBox2=0x7f08001f;
         public static final int checkBox3=0x7f080021;
->>>>>>> FETCH_HEAD
         public static final int create=0x7f080008;
         public static final int decrease=0x7f080003;
         public static final int description=0x7f080000;
@@ -59,23 +50,6 @@ public final class R {
         public static final int editText3=0x7f080006;
         public static final int editText4=0x7f080007;
         public static final int editText5=0x7f08000a;
-<<<<<<< HEAD
-        public static final int email=0x7f080011;
-        public static final int increase=0x7f080002;
-        public static final int list_title=0x7f080016;
-        public static final int login=0x7f080013;
-        public static final int login_title=0x7f080014;
-        public static final int menu_new=0x7f080020;
-        public static final int more_items=0x7f08001b;
-        public static final int name=0x7f080001;
-        public static final int password=0x7f080010;
-        public static final int price=0x7f080017;
-        public static final int progress=0x7f08000f;
-        public static final int scrollView=0x7f08001d;
-        public static final int signup=0x7f080012;
-        public static final int theLayout=0x7f08001e;
-        public static final int view1=0x7f08001c;
-=======
         public static final int editTextemail=0x7f08001b;
         public static final int email=0x7f080011;
         public static final int increase=0x7f080002;
@@ -98,7 +72,6 @@ public final class R {
         public static final int signup=0x7f080012;
         public static final int theLayout=0x7f080025;
         public static final int view1=0x7f080023;
->>>>>>> FETCH_HEAD
         public static final int view2=0x7f08000b;
     }
     public static final class layout {
