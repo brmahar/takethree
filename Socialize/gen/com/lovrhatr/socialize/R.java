@@ -29,6 +29,7 @@ public final class R {
         public static final int search_bg_shadow=0x7f020005;
     }
     public static final class id {
+        public static final int action_logout=0x7f080012;
         public static final int action_settings=0x7f080011;
         public static final int card_rel=0x7f080006;
         public static final int checkBox1=0x7f08000a;
@@ -56,6 +57,7 @@ public final class R {
     public static final class menu {
         public static final int login=0x7f070000;
         public static final int main=0x7f070001;
+        public static final int menu_activity_actions=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
