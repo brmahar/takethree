@@ -1,12 +1,17 @@
 package com.lovrhatr.socialize;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -38,6 +43,10 @@ public class EventActivity extends Activity {
 	private String eventName;
 	private String user;
 	Activity thisThing = this;
+	private String firstName;
+	private String lastName;
+	ParseUser currentUser;
+	ArrayList<String> attendees = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +62,9 @@ public class EventActivity extends Activity {
 		
 		SharedPreferences shared = PreferenceManager.getDefaultSharedPreferences(this);
 		user = shared.getString("User", "");
-		
+		currentUser = ParseUser.getCurrentUser();
+		firstName = (String) currentUser.get("first_name");
+		lastName = (String) currentUser.get("last_name");
 		title = (TextView)findViewById(R.id.editText1);
 		creator = (TextView)findViewById(R.id.editText2);
 		date = (TextView)findViewById(R.id.editText3);
@@ -80,6 +91,21 @@ public class EventActivity extends Activity {
 							user_event.put("username", user);
 							user_event.put("eventID", ObjectID);
 							user_event.saveInBackground();
+							
+							ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
+							 
+							// Retrieve the object by id
+							query.getInBackground(ObjectID, new GetCallback<ParseObject>() {
+							  public void done(ParseObject gameScore, ParseException e) {
+							    if (e == null) {
+							      // Now let's update it with some new data. In this case, only cheatMode and score
+							      // will get sent to the Parse Cloud. playerName hasn't changed.
+							    
+							      gameScore.add("people_attending", firstName + " " + lastName);
+							      gameScore.saveInBackground();
+							    }
+							  }
+							});
 							
 							AlertDialog.Builder popupBuilder = new AlertDialog.Builder(thisThing);
 							TextView myMsg = new TextView(thisThing);
@@ -115,6 +141,21 @@ public class EventActivity extends Activity {
 								public void done(List<ParseObject> arg0, ParseException arg1) {
 									arg0.get(0).deleteInBackground();
 								}
+							});
+							
+							ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
+							 
+							// Retrieve the object by id
+							query.getInBackground(ObjectID, new GetCallback<ParseObject>() {
+							  public void done(ParseObject gameScore, ParseException e) {
+							    if (e == null) {
+							      // Now let's update it with some new data. In this case, only cheatMode and score
+							      // will get sent to the Parse Cloud. playerName hasn't changed.
+							      attendees.add("Brady Mahar");
+							      gameScore.removeAll("people_attending", attendees);
+							      gameScore.saveInBackground();
+							    }
+							  }
 							});
 							
 							AlertDialog.Builder popupBuilder = new AlertDialog.Builder(thisThing);

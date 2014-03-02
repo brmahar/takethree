@@ -27,11 +27,13 @@ import android.content.SharedPreferences;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class CreateNewEvent extends Activity {
 
@@ -122,12 +124,14 @@ public class CreateNewEvent extends Activity {
 						String newTime = time.getText().toString();
 						String locDesc = locationDesc.getText().toString();
 						String creator = null;
-						String first;
-						String last;
-						ParseUser currentUser = ParseUser.getCurrentUser();
+						String first = "";
+						String last = "";
+						final String userName;
+						final ParseUser currentUser = ParseUser.getCurrentUser();
 						if (currentUser != null) {
 						  first = (String) currentUser.get("first_name");
 						  last = (String) currentUser.get("last_name");
+						  userName = (String) currentUser.get("username");
 						  creator = first+" "+last;
 						} else {
 						  // show the signup or login screen
@@ -135,11 +139,12 @@ public class CreateNewEvent extends Activity {
 						ParseObject store = new ParseObject("Event");
 						store.put("name", name);
 						store.put("description", eDesc);
-						store.put("people_attending", num);
+						store.put("looking_for_people", num);
 						store.put("date", newDate);
 						store.put("time", newTime);
 						store.put("location_string", locDesc);
 						store.put("creator", creator);
+						store.add("people_attending", first + " " + last);
 						LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
 						boolean enabled = service
 								.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -188,7 +193,6 @@ public class CreateNewEvent extends Activity {
 
 							@Override
 							public void done(ParseException e) {
-
 								Intent intent = new Intent(CreateNewEvent.this, MainActivity.class);
 								onPause();
 								onStop();
@@ -197,8 +201,23 @@ public class CreateNewEvent extends Activity {
 							}
 
 						});
+						ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
+						query.whereEqualTo("name", name);
+						query.whereEqualTo("creator", creator);
+						query.findInBackground(new FindCallback<ParseObject>() {
+
+							@Override
+							public void done(List<ParseObject> arg0, ParseException arg1) {
+								String key = arg0.get(0).getObjectId();
+								ParseObject user_event = new ParseObject("User_Event");
+								user_event.put("username", currentUser.get("username"));
+								user_event.put("eventID", key);
+								user_event.saveInBackground();
+							}
+						});
 
 					}
+					
 				})
 				.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {

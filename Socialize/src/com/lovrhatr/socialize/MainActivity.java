@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 	private TextView going;
 	private CardLayout layout;
 	private String name;
-	private String ObjectID;
+	//private String ObjectID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
 
 		// Get the location manager
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		// Define the criteria how to select the locatioin provider -> use
+		// Define the criteria how to select the location provider -> use
 		// default
 		Criteria criteria = new Criteria();
 		provider = locationManager.getBestProvider(criteria, false);
@@ -120,18 +120,11 @@ public class MainActivity extends Activity {
 	}
 
 	public void onLocationChanged(Location location) {
-		int lat = (int) (location.getLatitude());
-		int lng = (int) (location.getLongitude());
+		double lat = (double) (location.getLatitude());
+		double lng = (double) (location.getLongitude());
 		ParseGeoPoint point = new ParseGeoPoint(lat, lng);
 
-		layout = (CardLayout) findViewById(R.id.theLayout);
-		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);    
-		final View cardView = inflater.inflate(R.layout.main_list_card, null);
-		title = (TextView)cardView.findViewById(R.id.list_title);
-		creator = (TextView)cardView.findViewById(R.id.checkBox1);
-		date = (TextView)cardView.findViewById(R.id.checkBox2);
-		time = (TextView)cardView.findViewById(R.id.checkBox3);
-		going = (TextView)cardView.findViewById(R.id.more_items);
+		
 
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
 		query.whereNear("location", point);
@@ -141,7 +134,16 @@ public class MainActivity extends Activity {
 			@Override
 			public void done(List<ParseObject> arg0, ParseException arg1) {
 				for (int i = 0; i < arg0.size(); i++){
-					ObjectID = arg0.get(i).getObjectId();
+					layout = (CardLayout) findViewById(R.id.theLayout);
+					LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);    
+					final View cardView = inflater.inflate(R.layout.main_list_card, null);
+					title = (TextView)cardView.findViewById(R.id.list_title);
+					creator = (TextView)cardView.findViewById(R.id.checkBox1);
+					date = (TextView)cardView.findViewById(R.id.checkBox2);
+					time = (TextView)cardView.findViewById(R.id.checkBox3);
+					going = (TextView)cardView.findViewById(R.id.more_items);
+					final String ObjectID = arg0.get(i).getObjectId();
+					System.out.println(ObjectID);
 					name = arg0.get(i).getString("name");
 					title.setText(arg0.get(i).getString("name"));
 					creator.setText("  Creator: " + arg0.get(i).getString("creator"));
