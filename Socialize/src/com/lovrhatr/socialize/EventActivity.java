@@ -15,6 +15,7 @@ import com.parse.ParseUser;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -22,6 +23,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -53,6 +56,14 @@ public class EventActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Parse.initialize(this, "ZNUGpdAW35nGYe5hvleBl3IndIphZPbZjVfn8Vcn", "JGTTBGebCrZXx2J2nc6TVh3is6bwUBq5hROkFCSI");
 		setContentView(R.layout.activity_event);
+		
+		SpannableString s = new SpannableString("Socialize");
+	    s.setSpan(new TypefaceSpan(this, "Pacifico.ttf"), 0, s.length(),
+	            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	 
+	    // Update the action bar title with the TypefaceSpan instance
+	    ActionBar actionBar = getActionBar();
+	    actionBar.setTitle(s);
 		
 		Bundle extras = getIntent().getExtras();
 		if(extras !=null) {
