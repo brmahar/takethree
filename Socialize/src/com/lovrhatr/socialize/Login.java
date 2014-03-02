@@ -143,7 +143,7 @@ public class Login extends Activity {
 
 					@Override
 					public void done(ParseUser arg0, ParseException arg1) {
-						Intent intent = new Intent(Login.this, ProfilePage.class);
+						Intent intent = new Intent(Login.this, MainActivity.class);
 						onPause();
 						onStop();
 						startActivity(intent);

@@ -14,18 +14,24 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.view.Menu;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ProfilePage extends Activity {
 	
 	private ImageView bear;
+	private TextView username;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_profile_page);
+		username = (TextView)findViewById(R.id.names);
+		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");
+		username.setTypeface(typeFace);
 		Bitmap imageBitmap = null;
 		bear = (ImageView) findViewById(R.id.imageView1);
 		getImageTask image = new getImageTask();

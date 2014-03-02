@@ -191,6 +191,12 @@ public class MainActivity extends Activity {
 			onStop();
 			startActivity(intentNew);
 			return true;
+		case R.id.profile:
+			Intent intentProf = new Intent(MainActivity.this, ProfilePage.class);
+			onPause();
+			onStop();
+			startActivity(intentProf);
+			return true;
 		case R.id.action_logout:
 			SharedPreferences shared = PreferenceManager.getDefaultSharedPreferences(this);
 			Editor edit = shared.edit();
