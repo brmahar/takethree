@@ -52,7 +52,6 @@ public class Login extends Activity {
 	private EditText password;
 	private Button login;
 	private Button signUp;
-	private Button forgotPass;
 	private String getUser;
 	private String getPass;
 	int authCheck = 0;
@@ -82,7 +81,6 @@ public class Login extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(Login.this, MainActivity.class);
-				intent.putExtra("sign", "sign");
 				onPause();
 				onStop();
 				startActivity(intent);
@@ -98,9 +96,6 @@ public class Login extends Activity {
 		String sUser = shared.getString("User", "");
 		String sPass = shared.getString("Password", "");
 		boolean check = shared.getBoolean("stored", false);
-		if(check){
-			asyncCheck(sUser, sPass, check);
-		}
 
 
 	}
@@ -126,12 +121,15 @@ public class Login extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				getUser = username.getText().toString().toLowerCase(Locale.US);
+				getUser = username.getText().toString();
 				getPass = password.getText().toString();
 				savePreferences("stored", true);
 				savePreferences("User", getUser);
 				savePreferences("Password", getPass);
-				asyncCheck(getUser,getPass, false);
+				Intent intent = new Intent(Login.this, MainActivity.class);
+				onPause();
+				onStop();
+				startActivity(intent);
 			}
 
 
@@ -139,123 +137,6 @@ public class Login extends Activity {
 		};
 	}
 
-	private class AuthRequestAsync extends AsyncTask<String, Void, Integer>{
-
-		private ProgressDialog dialog;
-
-		@Override
-		protected void onPreExecute(){ 
-			// super.onPreExecute();
-			dialog = new ProgressDialog(Login.this);
-			dialog.show();
-		}
-
-
-		@Override
-		protected Integer doInBackground(String... params) {
-			String user = params[0];
-			String pass = params[1];
-			int authCheck = 0;
-			// Creating HTTP client
-			HttpClient httpClient = new DefaultHttpClient();
-			// Creating HTTP Post
-			HttpPost httpPost = new HttpPost(
-					"https://secure-api.target.com/guests/v3/auth?key=TOsFtGGrbOU7flysLs2U7a6QKSDi4526");
-			JSONObject auth = new JSONObject();
-			try {
-				auth.put("logonId", user);
-				auth.put("logonPassword", pass);
-			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			String message = auth.toString();
-			// Url Encoding the POST parameters
-			try {
-				httpPost.setEntity(new StringEntity(message, "UTF8"));
-				httpPost.setHeader("Content-type", "application/json");
-			} catch (UnsupportedEncodingException e) {
-				// writing error to Log
-				e.printStackTrace();
-			}
-
-			// Making HTTP Request
-			try {
-				HttpResponse response = httpClient.execute(httpPost);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
-				StringBuilder builder = new StringBuilder();
-				for (String line = null; (line = reader.readLine()) != null;) {
-					builder.append(line).append("\n");
-				}
-				//JSONTokener tokener = new JSONTokener(builder.toString());
-				//JSONArray finalResult = new JSONArray(tokener);
-				request = new JSONObject(builder.toString());
-				//System.out.println(request.get("firstName"));
-				// writing response to log
-				Log.d("Http Response:", response.toString());
-			} catch (ClientProtocolException e) {
-				// writing exception to log
-				e.printStackTrace();
-			} catch (IOException e) {
-				// writing exception to log
-				e.printStackTrace();
-
-			} catch (JSONException e) {
-				authCheck = 1;
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return authCheck;
-		}
-
-		protected void onPostExecute(Integer result){
-			dialog.dismiss();
-		}
-
-
-	}
-
-	private void asyncCheck(String userC, String passC, boolean check){
-		AuthRequestAsync theRun = new AuthRequestAsync();
-		int result = 0;
-		try {
-			result = theRun.execute(userC, passC).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(result);
-		if(result == 0){
-			if(check == false){
-				try {
-					Object targetID = request.get("userId");
-					Object firstName = request.get("firstName");
-					Object lastName = request.get("lastName");
-					store((String)firstName, (String)lastName, (String)targetID);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			}
-			Intent intent = new Intent(Login.this, MainActivity.class);
-			onPause();
-			onStop();
-			startActivity(intent);
-			finish();
-		}else{
-			new AlertDialog.Builder(Login.this)
-			.setTitle("Invalid username or password")
-			.setMessage("Your username or password is incorrect, try again.")
-			.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) { 
-					onRestart();
-				}
-			}).show();
-		}
-	}
 
 	public void store(final String firstName, final String lastName, String targetId){
 		final int actualId = Integer.parseInt(targetId);
