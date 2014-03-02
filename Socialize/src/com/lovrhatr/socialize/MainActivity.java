@@ -8,12 +8,15 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,6 +57,14 @@ public class MainActivity extends Activity {
 		boolean enabled = service
 				.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
+		SpannableString s = new SpannableString("Socialize");
+	    s.setSpan(new TypefaceSpan(this, "Pacifico.ttf"), 0, s.length(),
+	            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	 
+	    // Update the action bar title with the TypefaceSpan instance
+	    ActionBar actionBar = getActionBar();
+	    actionBar.setTitle(s);
+		
 		// check if enabled and if not send user to the GSP settings
 		// Better solution would be to display a dialog and suggesting to 
 		// go to the settings
