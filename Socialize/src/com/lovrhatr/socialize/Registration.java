@@ -26,6 +26,7 @@ public class Registration extends Activity {
 	private EditText password;
 	private EditText firstName;
 	private EditText lastName;
+	private EditText email;
 	private Button signUp;
 	
 	@Override
@@ -34,7 +35,7 @@ public class Registration extends Activity {
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 	    getActionBar().hide();
 		setContentView(R.layout.activity_registration);
-		title = (TextView)findViewById(R.id.login_title);
+		title = (TextView)findViewById(R.id.register_title);
 		Typeface typeFace=Typeface.createFromAsset(getAssets(),"fonts/Pacifico.ttf");
 		title.setTypeface(typeFace);
 		
@@ -42,9 +43,10 @@ public class Registration extends Activity {
 		
 		signUp = (Button)findViewById(R.id.register);
 		username = (EditText)findViewById(R.id.newUser);
-		password = (EditText)findViewById(R.id.passwordNew);
+		password = (EditText)findViewById(R.id.passwordNew3);
 		firstName = (EditText)findViewById(R.id.newFirst);
 		lastName = (EditText)findViewById(R.id.newLast);
+		email = (EditText)findViewById(R.id.editTextemail);
 		
 		
 	}
@@ -58,11 +60,12 @@ public class Registration extends Activity {
 	
 	public void createUser(View view){
 		ParseUser newPerson = new ParseUser();
-		
-		newPerson.put("username", username);
-		newPerson.put("password", password);
-		newPerson.put("first_name", firstName);
-		newPerson.put("last_name", lastName);
+		String pass = password.getText().toString();
+		System.out.println(pass);
+		newPerson.setUsername(username.getText().toString());
+		newPerson.put("first_name", firstName.getText().toString());
+		newPerson.put("last_name", lastName.getText().toString());
+		newPerson.setEmail(email.getText().toString());
 		
 		newPerson.signUpInBackground(new SignUpCallback() {
 			  public void done(ParseException e) {

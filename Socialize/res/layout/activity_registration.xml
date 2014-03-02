@@ -19,7 +19,7 @@
             android:indeterminateOnly="true" />
 
         <EditText
-            android:id="@+id/passwordNew"
+            android:id="@+id/passwordNew3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/newUser"
@@ -50,7 +50,7 @@
             android:id="@+id/newUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/passwordNew"
+            android:layout_alignLeft="@+id/passwordNew3"
             android:layout_below="@+id/register_title"
             android:layout_marginTop="19dp"
             android:background="@drawable/edit_back"
@@ -59,13 +59,13 @@
             android:gravity="center"
             android:hint="Username"
             android:padding="4dp"
-            android:typeface="sans" />
+            android:typeface="sans" ><requestFocus/></EditText>
 
         <EditText
             android:id="@+id/newFirst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/passwordNew"
+            android:layout_below="@+id/passwordNew3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:ems="10"
@@ -97,13 +97,28 @@
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/newLast"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="46dp"
+            android:layout_alignRight="@+id/editTextemail"
+            android:layout_below="@+id/editTextemail"
+            android:layout_marginTop="34dp"
             android:background="@drawable/login_button_custom"
             android:minHeight="32dp"
+            android:onClick="createUser"
             android:text="Sign Up"
-            android:typeface="sans"
-            android:onClick="createUser" />
+            android:typeface="sans" />
+
+        <EditText
+            android:id="@+id/editTextemail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/newLast"
+            android:layout_below="@+id/newLast"
+            android:layout_marginTop="17dp"
+            android:background="@drawable/edit_back"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="4dp"
+            android:typeface="sans" />
 
 </RelativeLayout>
