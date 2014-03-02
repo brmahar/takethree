@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
 	private TextView going;
 	private CardLayout layout;
 	private String name;
+	private String ObjectID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +113,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void done(List<ParseObject> arg0, ParseException arg1) {
 				for (int i = 0; i < arg0.size(); i++){
+					ObjectID = arg0.get(i).getObjectId();
 					name = arg0.get(i).getString("name");
 					title.setText(arg0.get(i).getString("name"));
 					creator.setText("  Creator: " + arg0.get(i).getString("creator"));
@@ -127,6 +129,7 @@ public class MainActivity extends Activity {
 						public void onClick(View v) {
 							Intent intent = new Intent(MainActivity.this, EventActivity.class);
 							intent.putExtra("name", name);
+							intent.putExtra("id", ObjectID);
 							onPause();
 							//onStop();
 							startActivity(intent);
