@@ -96,7 +96,12 @@ public class Login extends Activity {
 		String sUser = shared.getString("User", "");
 		String sPass = shared.getString("Password", "");
 		boolean check = shared.getBoolean("stored", false);
-
+		if(check != false){
+			Intent intent = new Intent(Login.this, MainActivity.class);
+			onPause();
+			onStop();
+			startActivity(intent);
+		}
 
 	}
 
