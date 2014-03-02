@@ -10,7 +10,11 @@ import com.parse.ParseQuery;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class EventActivity extends Activity {
@@ -21,6 +25,7 @@ public class EventActivity extends Activity {
 	private TextView time;
 	private TextView atendees;
 	private TextView description;
+	private Button join;
 	private String ObjectID;
 	private String eventName;
 
@@ -42,6 +47,17 @@ public class EventActivity extends Activity {
 		time = (TextView)findViewById(R.id.editText4);
 		atendees = (TextView)findViewById(R.id.TextView01);
 		description = (TextView)findViewById(R.id.editText5);
+		join = (Button)findViewById(R.id.button1);
+		
+		join.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				
+
+			}
+
+		});
 		
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
 		query.whereEqualTo("objectId", ObjectID);
