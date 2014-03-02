@@ -37,6 +37,12 @@
             android:label="@string/title_activity_event" >
 
         </activity>
+        <activity
+
+            android:name="com.lovrhatr.socialize.CreateNewEvent"
+            android:label="create_event" >
+
+        </activity>
     </application>
 
 </manifest>

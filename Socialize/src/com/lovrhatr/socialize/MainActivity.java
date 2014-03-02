@@ -152,7 +152,7 @@ public class MainActivity extends Activity {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
 		case R.id.menu_new:
-			Intent intentNew = new Intent(MainActivity.this, Login.class);
+			Intent intentNew = new Intent(MainActivity.this, CreateNewEvent.class);
 			onPause();
 			onStop();
 			startActivity(intentNew);
