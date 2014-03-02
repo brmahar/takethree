@@ -34,15 +34,6 @@ public final class R {
         public static final int Button01=0x7f08000e;
         public static final int TextView01=0x7f080009;
         public static final int View01=0x7f08000c;
-<<<<<<< HEAD
-        public static final int action_logout=0x7f080021;
-        public static final int action_settings=0x7f08001f;
-        public static final int button1=0x7f08000d;
-        public static final int card_rel=0x7f080015;
-        public static final int checkBox1=0x7f080019;
-        public static final int checkBox2=0x7f080018;
-        public static final int checkBox3=0x7f08001a;
-=======
         public static final int action_logout=0x7f080028;
         public static final int action_settings=0x7f080026;
         public static final int button1=0x7f08000d;
@@ -50,7 +41,6 @@ public final class R {
         public static final int checkBox1=0x7f080020;
         public static final int checkBox2=0x7f08001f;
         public static final int checkBox3=0x7f080021;
->>>>>>> FETCH_HEAD
         public static final int create=0x7f080008;
         public static final int decrease=0x7f080003;
         public static final int description=0x7f080000;
@@ -59,23 +49,6 @@ public final class R {
         public static final int editText3=0x7f080006;
         public static final int editText4=0x7f080007;
         public static final int editText5=0x7f08000a;
-<<<<<<< HEAD
-        public static final int email=0x7f080011;
-        public static final int increase=0x7f080002;
-        public static final int list_title=0x7f080016;
-        public static final int login=0x7f080013;
-        public static final int login_title=0x7f080014;
-        public static final int menu_new=0x7f080020;
-        public static final int more_items=0x7f08001b;
-        public static final int name=0x7f080001;
-        public static final int password=0x7f080010;
-        public static final int price=0x7f080017;
-        public static final int progress=0x7f08000f;
-        public static final int scrollView=0x7f08001d;
-        public static final int signup=0x7f080012;
-        public static final int theLayout=0x7f08001e;
-        public static final int view1=0x7f08001c;
-=======
         public static final int editTextemail=0x7f08001b;
         public static final int email=0x7f080011;
         public static final int increase=0x7f080002;
@@ -98,16 +71,16 @@ public final class R {
         public static final int signup=0x7f080012;
         public static final int theLayout=0x7f080025;
         public static final int view1=0x7f080023;
->>>>>>> FETCH_HEAD
         public static final int view2=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_create_new_event=0x7f030000;
         public static final int activity_event=0x7f030001;
         public static final int activity_layout=0x7f030002;
-        public static final int activity_registration=0x7f030003;
-        public static final int main_list_card=0x7f030004;
-        public static final int main_lists=0x7f030005;
+        public static final int activity_profile_page=0x7f030003;
+        public static final int activity_registration=0x7f030004;
+        public static final int main_list_card=0x7f030005;
+        public static final int main_lists=0x7f030006;
     }
     public static final class menu {
         public static final int create_new_event=0x7f070000;
@@ -115,7 +88,8 @@ public final class R {
         public static final int login=0x7f070002;
         public static final int main=0x7f070003;
         public static final int menu_activity_actions=0x7f070004;
-        public static final int registration=0x7f070005;
+        public static final int profile_page=0x7f070005;
+        public static final int registration=0x7f070006;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -124,6 +98,7 @@ public final class R {
         public static final int title_activity_create_new_event=0x7f050005;
         public static final int title_activity_event=0x7f050004;
         public static final int title_activity_main=0x7f050003;
+        public static final int title_activity_profile_page=0x7f050007;
         public static final int title_activity_registration=0x7f050006;
     }
     public static final class style {

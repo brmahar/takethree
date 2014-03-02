@@ -43,6 +43,10 @@
             android:name="com.lovrhatr.socialize.Registration"
             android:label="@string/title_activity_registration" >
         </activity>
+        <activity
+            android:name="com.lovrhatr.socialize.ProfilePage"
+            android:label="@string/title_activity_profile_page" >
+        </activity>
     </application>
 
 </manifest>
