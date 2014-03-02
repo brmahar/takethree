@@ -10,8 +10,10 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -70,8 +72,34 @@ public class MainActivity extends Activity {
 		// Better solution would be to display a dialog and suggesting to 
 		// go to the settings
 		if (!enabled) {
-			Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			startActivity(intent);
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+			// set title
+			alertDialogBuilder.setTitle("Location Services");
+
+			// set dialog message
+			alertDialogBuilder
+			.setMessage("Please turn on your GPS settings")
+			.setCancelable(false)
+			.setPositiveButton("Settings",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+					startActivity(intent);
+				}
+			})
+			.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					// if this button is clicked, just close
+					// the dialog box and do nothing
+					dialog.cancel();
+				}
+			});
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+
+			// show it
+			alertDialog.show();
 		} 
 
 		// Get the location manager
