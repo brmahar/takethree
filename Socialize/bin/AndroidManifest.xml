@@ -32,13 +32,10 @@
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-<<<<<<< HEAD
+
             android:name="com.lovrhatr.socialize.EventActivity"
             android:label="@string/title_activity_event" >
-=======
-            android:name="com.lovrhatr.socialize.CreateNewEvent"
-            android:label="@string/title_activity_create_new_event" >
->>>>>>> FETCH_HEAD
+
         </activity>
     </application>
 
