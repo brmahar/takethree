@@ -99,9 +99,9 @@ public class MainActivity extends Activity {
 			public void done(List<ParseObject> arg0, ParseException arg1) {
 				for (int i = 0; i < arg0.size(); i++){
 					title.setText(arg0.get(i).getString("name"));
-					creator.setText(" - " + arg0.get(i).getString("creator"));
-					date.setText(" - " + arg0.get(i).getString("date"));
-					time.setText(" - " + arg0.get(i).getString("time"));
+					creator.setText("  Creator: " + arg0.get(i).getString("creator"));
+					date.setText("  Date: " + arg0.get(i).getString("date"));
+					time.setText("  Time: " + arg0.get(i).getString("time"));
 					going.setText(arg0.get(i).getInt("looking_for_people") + " people attending");
 					going.setPadding(0, 0, 0, 10);
 					layout.addView(cardView);
