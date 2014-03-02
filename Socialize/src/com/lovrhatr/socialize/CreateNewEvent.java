@@ -8,6 +8,7 @@ import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import android.location.Criteria;
@@ -114,88 +115,88 @@ public class CreateNewEvent extends Activity {
 				.setCancelable(false)
 				.setPositiveButton("Create",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
-						
-						String sUser = shared.getString("User", "");
-						System.out.println(sUser);
-						ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-						query.whereEqualTo("username", sUser);
-						query.findInBackground(new FindCallback<ParseObject>() {
-							public void done(List<ParseObject> nameList, ParseException e) {
-								String name = eventName.getText().toString();
-								String eDesc = eventDescription.getText().toString();
-								int num = numberPeople;
-								String newDate = date.getText().toString();
-								String newTime = time.getText().toString();
-								String locDesc = locationDesc.getText().toString();
-								creator = nameList.get(0).get("first_name")+""+nameList.get(0).get("last_name");
-								ParseObject store = new ParseObject("Event");
-								store.put("name", name);
-								store.put("description", eDesc);
-								store.put("people_attending", num);
-								store.put("date", newDate);
-								store.put("time", newTime);
-								store.put("location_string", locDesc);
-								store.put("creator", creator);
-								LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-								boolean enabled = service
-										.isProviderEnabled(LocationManager.GPS_PROVIDER);
-								if (!enabled) {
-									AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CreateNewEvent.this);
+						String name = eventName.getText().toString();
+						String eDesc = eventDescription.getText().toString();
+						int num = numberPeople;
+						String newDate = date.getText().toString();
+						String newTime = time.getText().toString();
+						String locDesc = locationDesc.getText().toString();
+						String creator = null;
+						String first;
+						String last;
+						ParseUser currentUser = ParseUser.getCurrentUser();
+						if (currentUser != null) {
+						  first = (String) currentUser.get("first_name");
+						  last = (String) currentUser.get("last_name");
+						  creator = first+" "+last;
+						} else {
+						  // show the signup or login screen
+						}
+						ParseObject store = new ParseObject("Event");
+						store.put("name", name);
+						store.put("description", eDesc);
+						store.put("people_attending", num);
+						store.put("date", newDate);
+						store.put("time", newTime);
+						store.put("location_string", locDesc);
+						store.put("creator", creator);
+						LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+						boolean enabled = service
+								.isProviderEnabled(LocationManager.GPS_PROVIDER);
+						if (!enabled) {
+							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CreateNewEvent.this);
 
-									// set title
-									alertDialogBuilder.setTitle("Location Services");
+							// set title
+							alertDialogBuilder.setTitle("Location Services");
 
-									// set dialog message
-									alertDialogBuilder
-									.setMessage("Please turn on your GPS settings")
-									.setCancelable(false)
-									.setPositiveButton("Settings",new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog,int id) {
-											Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-											startActivity(intent);
-										}
-									})
-									.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
-										public void onClick(DialogInterface dialog,int id) {
-											// if this button is clicked, just close
-											// the dialog box and do nothing
-											dialog.cancel();
-										}
-									});
-
-									// create alert dialog
-									AlertDialog alertDialog = alertDialogBuilder.create();
-
-									// show it
-									alertDialog.show();
-
+							// set dialog message
+							alertDialogBuilder
+							.setMessage("Please turn on your GPS settings")
+							.setCancelable(false)
+							.setPositiveButton("Settings",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+									startActivity(intent);
 								}
-								locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-								// Define the criteria how to select the locatioin provider -> use
-								// default
-								Criteria criteria = new Criteria();
-								provider = locationManager.getBestProvider(criteria, false);
-								Location location = locationManager.getLastKnownLocation(provider);
-								int lat = (int) (location.getLatitude());
-								int lng = (int) (location.getLongitude());
-								ParseGeoPoint point = new ParseGeoPoint(lat, lng);
-								store.put("location", point);
-								store.saveInBackground(new SaveCallback(){
+							})
+							.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// if this button is clicked, just close
+									// the dialog box and do nothing
+									dialog.cancel();
+								}
+							});
 
-									@Override
-									public void done(ParseException e) {
+							// create alert dialog
+							AlertDialog alertDialog = alertDialogBuilder.create();
 
-										Intent intent = new Intent(CreateNewEvent.this, MainActivity.class);
-										onPause();
-										onStop();
-										startActivity(intent);
+							// show it
+							alertDialog.show();
 
-									}
+						}
+						locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+						// Define the criteria how to select the locatioin provider -> use
+						// default
+						Criteria criteria = new Criteria();
+						provider = locationManager.getBestProvider(criteria, false);
+						Location location = locationManager.getLastKnownLocation(provider);
+						int lat = (int) (location.getLatitude());
+						int lng = (int) (location.getLongitude());
+						ParseGeoPoint point = new ParseGeoPoint(lat, lng);
+						store.put("location", point);
+						store.saveInBackground(new SaveCallback(){
 
-								});
+							@Override
+							public void done(ParseException e) {
+
+								Intent intent = new Intent(CreateNewEvent.this, MainActivity.class);
+								onPause();
+								onStop();
+								startActivity(intent);
+
 							}
+
 						});
-						
 
 					}
 				})
