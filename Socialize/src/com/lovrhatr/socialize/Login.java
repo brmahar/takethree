@@ -97,10 +97,18 @@ public class Login extends Activity {
 		String sPass = shared.getString("Password", "");
 		boolean check = shared.getBoolean("stored", false);
 		if(check != false){
-			Intent intent = new Intent(Login.this, MainActivity.class);
-			onPause();
-			onStop();
-			startActivity(intent);
+			ParseUser.logInInBackground(sUser, sPass, new LogInCallback() {
+
+				@Override
+				public void done(ParseUser arg0, ParseException arg1) {
+					Intent intent = new Intent(Login.this, MainActivity.class);
+					onPause();
+					onStop();
+					startActivity(intent);
+				}
+				
+			});
+			
 		}
 
 	}
@@ -131,10 +139,17 @@ public class Login extends Activity {
 				savePreferences("stored", true);
 				savePreferences("User", getUser);
 				savePreferences("Password", getPass);
-				Intent intent = new Intent(Login.this, MainActivity.class);
-				onPause();
-				onStop();
-				startActivity(intent);
+				ParseUser.logInInBackground(getUser, getPass, new LogInCallback() {
+
+					@Override
+					public void done(ParseUser arg0, ParseException arg1) {
+						Intent intent = new Intent(Login.this, MainActivity.class);
+						onPause();
+						onStop();
+						startActivity(intent);
+					}
+					
+				});
 			}
 
 
@@ -157,7 +172,6 @@ public class Login extends Activity {
 					userNew.setPassword(getPass);
 					userNew.put("first_name", firstName);
 					userNew.put("last_name", lastName);
-					userNew.put("target_id", actualId);
 
 					userNew.signUpInBackground(new SignUpCallback() {
 						public void done(ParseException e) {
