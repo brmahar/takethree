@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 
 						@Override
 						public void onClick(View v) {
-							Intent intent = new Intent(MainActivity.this, Login.class);
+							Intent intent = new Intent(MainActivity.this, EventActivity.class);
 							intent.putExtra("name", name);
 							onPause();
 							//onStop();
