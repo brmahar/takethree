@@ -5,6 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
+<<<<<<< HEAD
     <string name="title_activity_event">EventActivity</string>
+=======
+    <string name="title_activity_create_new_event">CreateNewEvent</string>
+>>>>>>> FETCH_HEAD
 
 </resources>

@@ -23,13 +23,14 @@ public final class R {
     public static final class drawable {
         public static final int custombutton=0x7f020000;
         public static final int edit_back=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int login_button_custom=0x7f020003;
-        public static final int pressedbutton=0x7f020004;
-        public static final int search_bg_shadow=0x7f020005;
+        public static final int ic_action_new=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int login_button_custom=0x7f020004;
+        public static final int pressedbutton=0x7f020005;
+        public static final int search_bg_shadow=0x7f020006;
     }
     public static final class id {
-        public static final int action_logout=0x7f080012;
+        public static final int action_logout=0x7f080013;
         public static final int action_settings=0x7f080011;
         public static final int card_rel=0x7f080006;
         public static final int checkBox1=0x7f08000a;
@@ -39,6 +40,7 @@ public final class R {
         public static final int list_title=0x7f080007;
         public static final int login=0x7f080004;
         public static final int login_title=0x7f080005;
+        public static final int menu_new=0x7f080012;
         public static final int more_items=0x7f08000c;
         public static final int password=0x7f080001;
         public static final int price=0x7f080008;
@@ -50,13 +52,21 @@ public final class R {
         public static final int view2=0x7f08000e;
     }
     public static final class layout {
+<<<<<<< HEAD
         public static final int activity_event=0x7f030000;
+=======
+        public static final int activity_create_new_event=0x7f030000;
+>>>>>>> FETCH_HEAD
         public static final int activity_layout=0x7f030001;
         public static final int main_list_card=0x7f030002;
         public static final int main_lists=0x7f030003;
     }
     public static final class menu {
+<<<<<<< HEAD
         public static final int event=0x7f070000;
+=======
+        public static final int create_new_event=0x7f070000;
+>>>>>>> FETCH_HEAD
         public static final int login=0x7f070001;
         public static final int main=0x7f070002;
         public static final int menu_activity_actions=0x7f070003;
@@ -65,7 +75,11 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
+<<<<<<< HEAD
         public static final int title_activity_event=0x7f050004;
+=======
+        public static final int title_activity_create_new_event=0x7f050004;
+>>>>>>> FETCH_HEAD
         public static final int title_activity_main=0x7f050003;
     }
     public static final class style {

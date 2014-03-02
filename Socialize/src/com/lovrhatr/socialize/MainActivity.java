@@ -140,6 +140,12 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle presses on the action bar items
 		switch (item.getItemId()) {
+		case R.id.menu_new:
+			Intent intentNew = new Intent(MainActivity.this, Login.class);
+			onPause();
+			onStop();
+			startActivity(intentNew);
+			return true;
 		case R.id.action_logout:
 			SharedPreferences shared = PreferenceManager.getDefaultSharedPreferences(this);
 			Editor edit = shared.edit();
