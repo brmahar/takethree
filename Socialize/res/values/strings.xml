@@ -8,5 +8,6 @@
     <string name="title_activity_event">EventActivity</string>
     <string name="title_activity_create_new_event">CreateNewEvent</string>
     <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_profile_page">ProfilePage</string>
 
 </resources>

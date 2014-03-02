@@ -78,9 +78,10 @@ public final class R {
         public static final int activity_create_new_event=0x7f030000;
         public static final int activity_event=0x7f030001;
         public static final int activity_layout=0x7f030002;
-        public static final int activity_registration=0x7f030003;
-        public static final int main_list_card=0x7f030004;
-        public static final int main_lists=0x7f030005;
+        public static final int activity_profile_page=0x7f030003;
+        public static final int activity_registration=0x7f030004;
+        public static final int main_list_card=0x7f030005;
+        public static final int main_lists=0x7f030006;
     }
     public static final class menu {
         public static final int create_new_event=0x7f070000;
@@ -88,7 +89,8 @@ public final class R {
         public static final int login=0x7f070002;
         public static final int main=0x7f070003;
         public static final int menu_activity_actions=0x7f070004;
-        public static final int registration=0x7f070005;
+        public static final int profile_page=0x7f070005;
+        public static final int registration=0x7f070006;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -97,6 +99,7 @@ public final class R {
         public static final int title_activity_create_new_event=0x7f050005;
         public static final int title_activity_event=0x7f050004;
         public static final int title_activity_main=0x7f050003;
+        public static final int title_activity_profile_page=0x7f050007;
         public static final int title_activity_registration=0x7f050006;
     }
     public static final class style {
