@@ -80,7 +80,7 @@ public class Login extends Activity {
 		signUp.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(Login.this, MainActivity.class);
+				Intent intent = new Intent(Login.this, Registration.class);
 				onPause();
 				onStop();
 				startActivity(intent);
