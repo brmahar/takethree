@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -30,6 +31,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 
+
 public class MainActivity extends Activity {
 
 	private LocationManager locationManager;
@@ -40,6 +42,7 @@ public class MainActivity extends Activity {
 	private TextView creator;
 	private TextView going;
 	private CardLayout layout;
+	private String name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void done(List<ParseObject> arg0, ParseException arg1) {
 				for (int i = 0; i < arg0.size(); i++){
+					name = arg0.get(i).getString("name");
 					title.setText(arg0.get(i).getString("name"));
 					creator.setText("  Creator: " + arg0.get(i).getString("creator"));
 					date.setText("  Date: " + arg0.get(i).getString("date"));
@@ -105,6 +109,20 @@ public class MainActivity extends Activity {
 					going.setText(arg0.get(i).getInt("looking_for_people") + " people attending");
 					going.setPadding(0, 0, 0, 10);
 					layout.addView(cardView);
+					
+					cardView.setOnClickListener(new OnClickListener(){
+
+						@Override
+						public void onClick(View v) {
+							Intent intent = new Intent(MainActivity.this, EventActivity.class);
+							intent.putExtra("name", name);
+							onPause();
+							//onStop();
+							startActivity(intent);
+
+						}
+
+					});
 				}
 			}
 		});
